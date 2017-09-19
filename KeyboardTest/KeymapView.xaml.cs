@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace KeyboardTest
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for KeymapView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class KeymapView : UserControl
     {
-        public MainWindow()
+        public KeymapView()
         {
             InitializeComponent();
         }

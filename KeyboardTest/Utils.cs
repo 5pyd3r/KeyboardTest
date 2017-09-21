@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -128,5 +129,13 @@ namespace KeyboardTest
 
             return list;
         }
+
+        static public int VkToSc(int vk_code)
+        {
+            return 0;
+        }
+
+        [DllImport("user32.dll")]
+        static extern int MapVirtualKey(int uCode, uint uMapType);
     }
 }

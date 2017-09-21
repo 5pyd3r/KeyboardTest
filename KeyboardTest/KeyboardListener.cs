@@ -18,6 +18,7 @@ namespace KeyboardTest
         /// <summary>
         /// Creates global keyboard listener.
         /// </summary>
+        public bool trapped { get; set; } = false;
         public KeyboardListener()
         {
             // Dispatcher thread handling the KeyDown/KeyUp events.
@@ -95,8 +96,8 @@ namespace KeyboardTest
 
                     hookedKeyboardCallbackAsync.BeginInvoke((InterceptKeys.KeyEvent)wParam.ToUInt32(), Marshal.ReadInt32(lParam), chars, null, null);
                 }
-            
-            return InterceptKeys.CallNextHookEx(hookId, nCode, wParam, lParam);
+
+            return trapped? (System.IntPtr)1: InterceptKeys.CallNextHookEx(hookId, nCode, wParam, lParam);
         }
 
         /// <summary>
@@ -154,6 +155,7 @@ namespace KeyboardTest
         /// </summary>
         public void Dispose()
         {
+            trapped = false;
             InterceptKeys.UnhookWindowsHookEx(hookId);
         }
 

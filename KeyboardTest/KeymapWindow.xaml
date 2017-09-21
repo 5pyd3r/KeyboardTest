@@ -22,8 +22,10 @@
                 <Label Content="{Binding ScanCode, Converter={StaticResource CodeToHexConverter}}" ContentStringFormat="Scan Code: {0}    "/>
                 <Label Content="{Binding VitualCode, Converter={StaticResource CodeToHexConverter}}" ContentStringFormat="Windows Code: {0}    "/>
                 <Label Content="{Binding KeyName}" ContentStringFormat="Name: {0}    "/>
-                <Button Content="Reset" HorizontalAlignment="Right" Margin="2 2 2 2" IsTabStop="False" 
-                        Command="{Binding ResetCommand}" CommandParameter="{Binding}"/>
+                <Button Content="Reset" Margin="2 2 2 2" IsTabStop="False" DockPanel.Dock="Right"
+                        Command="{Binding ResetCommand}" CommandParameter="{Binding}" />
+                <CheckBox Content="Trap all keystrokes" IsChecked="{Binding Path=Trapped, Mode=TwoWay}" 
+                          DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Right" IsTabStop="False"/>
             </DockPanel>
         </Border>
     </StackPanel>

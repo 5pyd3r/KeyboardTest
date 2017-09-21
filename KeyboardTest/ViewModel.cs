@@ -67,14 +67,23 @@ namespace KeyboardTest
         private string _name = "";
         public string KeyName
         {
-            get
-            {
-                return _name;
-            }
+            get{ return _name; }
             private set
             {
                 if(_name == value) return;
                 _name = value;
+                NotifyPropertyChanged();
+            }
+        }
+        private bool _trapped = false;
+        public  bool Trapped
+        {
+            get { return _trapped; }
+            set
+            {
+                if (_trapped == value) return;
+                _trapped = value;
+                Listener.trapped = _trapped;
                 NotifyPropertyChanged();
             }
         }
@@ -132,6 +141,7 @@ namespace KeyboardTest
         private void KeyUp(object sender, RawKeyEventArgs args)
         {
             int vk_code = args.VKCode;
+            int sc_code = Utils.VkToSc(vk_code);
 
             for (int i = 0; i < keymap.Count; i++)
             {
